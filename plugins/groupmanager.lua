@@ -47,7 +47,7 @@ end
                   mute_document = 'no',
                   mute_sticker = 'no',
                   mute_voice = 'no',
-                  mute_all = 'no'
+                  mute_all = 'no',
 	          mute_keyboard = 'no',
 		  english = 'no',
 		  views = 'no',
