@@ -63,6 +63,11 @@ end
 	else
 		mute_text = 'no'
 	end
+	if settings.mute_keyboard then
+		mute_keyboard = settings.mute_keyboard
+	else
+		mute_keyboard = 'no'
+	end
 	if settings.mute_forward then
 		mute_forward = settings.mute_forward
 	else
@@ -112,6 +117,21 @@ end
 		lock_tag = settings.lock_tag
 	else
 		lock_tag = 'no'
+	end
+	if settings.english then
+		english = settings.english
+	else
+		english = 'no'
+	end
+	if settings.views then
+		views = settings.views
+	else
+		views = 'no'
+	end
+	if settings.emoji then
+		emoji = settings.emoji
+	else
+		emoji = 'no'
 	end
 	if settings.lock_arabic then
 		lock_arabic = settings.lock_arabic
@@ -263,6 +283,15 @@ end
 kick_user(user, chat)
    end
 end
+  if msg.content_ and mute_keyboard == "yes" then
+  if msg.reply_markup_ and  msg.reply_markup_.ID == "ReplyMarkupInlineKeyboard" then
+ if is_channel then
+ del_msg(chat, tonumber(msg.id))
+  elseif is_chat then
+kick_user(user, chat)
+      end
+   end
+end			
     if tonumber(msg.via_bot_user_id_) ~= 0 and mute_inline == "yes" then
  if is_channel then
  del_msg(msg.chat_id_, tonumber(msg.id_))
@@ -311,6 +340,22 @@ if tag_msg and lock_tag == "yes" then
 kick_user(user, chat)
    end
 end
+local english_caption = msg.media.caption:match("[ASDFGHJKLQWERTYUIOPZXCVBNMasdfghjklqwertyuiopzxcvbnm]")
+if english_caption and english == "yes" then
+ if is_channel then
+ del_msg(chat, tonumber(msg.id))
+  elseif is_chat then
+kick_user(user, chat)
+   end
+end
+local emoji_caption = msg.media.caption:match("[😀😬😁😂😃😄😅☺️🙃🙂😊😉😇😆😋😌😍😘😗😙😚🤗😎🤓🤑😛😝😜😏😶😐😑😒🙄🤔😕😔😡😠😟😞😳🙁☹️😣😖😫😩😤😧😦😯😰😨😱😮😢😥😪😓😭😵😲💩💤😴🤕🤒😷🤐😈👿👹👺💀👻👽😽😼😻😹😸😺🤖🙀😿😾🙌🏻👏🏻👋🏻👍🏻👎🏻👊🏻✊🏻✌🏻👌🏻✋🏻👐🏻💪🏻🙏🏻☝🏻️👆🏻👇🏻👈🏻👉🏻🖕🏻🖐🏻🤘🏻🖖🏻✍🏻💅🏻👄👅👂🏻👃🏻👁👀👤👥👱🏻👩🏻👨🏻👧🏻👦🏻👶🏻🗣👴🏻👵🏻👲🏻🏃🏻🚶🏻💑👩‍❤️‍👩👨‍❤️‍👨💏👩‍❤️‍💋‍👩👨‍❤️‍💋‍👨👪👩‍👩‍👧‍👦👩‍👩‍👧👩‍👩‍👦👨‍👩‍👧‍👧👨‍👩‍👦‍👦👨‍👩‍👧‍👦👨‍👩‍👧👩‍👩‍👦‍👦👩‍👩‍👧‍👧👨‍👨‍👦👨‍👨‍👧👨‍👨‍👧‍👦👨‍👨‍👦‍👦👨‍👨‍👧‍👧👘👙👗👔👖👕👚💄💋👣👠👡👢👞🎒⛑👑🎓🎩👒👟👝👛👜💼👓🕶💍🌂🐶🐱🐭🐹🐰🐻🐼🐸🐽🐷🐮🦁🐯🐨🐙🐵🙈🙉🙊🐒🐔🐗🐺🐥🐣🐤🐦🐧🐴🦄🐝🐛🐌🐞🐜🕷🦂🦀🐍🐢🐠🐟🐅🐆🐊🐋🐬🐡🐃🐂🐄🐪🐫🐘🐐🐓🐁🐀🐖🐎🐑🐏🦃🕊🐕]")
+if emoji_caption and emoji == "yes" then
+ if is_channel then
+ del_msg(chat, tonumber(msg.id))
+  elseif is_chat then
+kick_user(user, chat)
+   end
+end			
 if is_filter(msg, msg.text) then
  if is_channel then
  del_msg(msg.chat_id_, tonumber(msg.id_))
@@ -326,6 +371,13 @@ if arabic_msg and lock_arabic == "yes" then
 kick_user(user, chat)
    end
 end
+if views =="yes" and msg.views_ ~= 0 then
+if is_channel then
+ del_msg(chat, tonumber(msg.id))
+  elseif is_chat then
+kick_user(user, chat)
+   end
+end			
 if msg.text:match("(.*)")
 and mute_text == "yes" then
  if is_channel then
