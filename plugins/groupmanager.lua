@@ -47,7 +47,8 @@ end
                   mute_document = 'no',
                   mute_sticker = 'no',
                   mute_voice = 'no',
-                  mute_all = 'no'
+                  mute_all = 'no',
+		  emoji = 'no'
           }
       }
   save_data(_config.moderation.data, data)
